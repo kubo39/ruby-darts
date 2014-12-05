@@ -95,7 +95,7 @@ rb_darts_longest_match(VALUE self, VALUE rb_text) {
   }
 
   if (maxlen > 0) {
-    return rb_str_new2(text);
+    return rb_str_substr(rb_str_new2(text), 0, maxlen);
   }
   return Qnil;
 }
