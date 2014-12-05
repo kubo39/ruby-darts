@@ -108,7 +108,7 @@ rb_darts_common_prefix_search(VALUE self, VALUE rb_text) {
   Darts::result_pair_type darts_results[RESULT_SIZE];
   size_t da_size;
   int i = 0;
-  VALUE ret_arr;
+  VALUE ret_arr, rb_prefix_str;
 
   Data_Get_Struct(self, darts_t, ptr);
 
@@ -117,7 +117,8 @@ rb_darts_common_prefix_search(VALUE self, VALUE rb_text) {
 
   ret_arr = rb_ary_new();
   for (i;i<da_size;++i) {
-    rb_ary_push(ret_arr, rb_str_new2(text));
+    rb_prefix_str = rb_str_substr(rb_str_new2(text), 0, darts_results[i].length);
+    rb_ary_push(ret_arr, rb_prefix_str);
   }
   return ret_arr;
 }
