@@ -1,4 +1,4 @@
-require '../ext/darts'
+require_relative '../ext/darts'
 require 'minitest/unit'
 require 'minitest/autorun'
 
