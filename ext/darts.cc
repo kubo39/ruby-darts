@@ -96,7 +96,7 @@ rb_darts_longest_match(VALUE self, VALUE rb_text) {
   }
 
   if (maxlen > 0) {
-    return rb_str_substr(rb_str_new2(text), 0, maxlen);
+    return rb_str_new(text, maxlen);
   }
   return Qnil;
 }
@@ -109,7 +109,7 @@ rb_darts_common_prefix_search(VALUE self, VALUE rb_text) {
   Darts::result_pair_type darts_results[RESULT_SIZE];
   size_t da_size;
   int i = 0;
-  VALUE ret_arr, rb_prefix_str;
+  VALUE ret_arr;
 
   Data_Get_Struct(self, darts_t, ptr);
 
@@ -118,8 +118,7 @@ rb_darts_common_prefix_search(VALUE self, VALUE rb_text) {
 
   ret_arr = rb_ary_new();
   for (i;i<da_size;++i) {
-    rb_prefix_str = rb_str_substr(rb_str_new2(text), 0, darts_results[i].length);
-    rb_ary_push(ret_arr, rb_prefix_str);
+    rb_ary_push(ret_arr, rb_str_new(text, darts_results[i].length));
   }
   return ret_arr;
 }
