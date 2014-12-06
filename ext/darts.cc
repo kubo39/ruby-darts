@@ -1,5 +1,4 @@
 #include <ruby.h>
-#include <stdio.h>
 #include <sys/mman.h>
 #include "darts.h"
 
@@ -20,7 +19,6 @@ typedef struct {
 
 static void
 darts_free(darts_t *ptr) {
-  ptr->da->clear();
   delete ptr->da;
   munmap(ptr->m_ptr, ptr->m_size);
 }
