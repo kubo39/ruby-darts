@@ -21,6 +21,7 @@ typedef struct {
 static void
 darts_free(darts_t *ptr) {
   ptr->da->clear();
+  delete ptr->da;
   munmap(ptr->m_ptr, ptr->m_size);
 }
 
